@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xlmns:th = "http://www.thymeleaf.org">
+    <head>Your personal task list</head>
+
+    <body>
+        <div>Welcome,</div>
+        <div th:text = "${user}">User</div>
+
+
+    </body>
+
+    <table>
+
+        <tr>
+            <th> Tasks to do:</th>
+        </tr>
+        <tr th:each = "task:${tasks}">
+            <td th:text = "${task}"></td>
+            <td>
+                <form action = "http://localhost:8080/students/taskcompleted" method = "post">
+                    <input type = "hidden" name = "deletebutton" th:value = "${task}"><br>
+                    <input type = "hidden" name = "further" th:value = "${user}"><br>
+                    <input type = "submit" value = "Completed">
+
+                </form>
+
+
+
+            </td>
+
+        </tr>
+    </table>
+
+
+
+    <form action = "http://localhost:8080/students/addtask" method = "post">
+        <label>Type in name of task:</label>
+        <input type = "text" name = "taskname"><br>
+        <input type = "hidden" name = "fname" th:value = "${user}"><br>
+        <input type = "submit" value = "Add task">
+    </form>
+
+</html>
